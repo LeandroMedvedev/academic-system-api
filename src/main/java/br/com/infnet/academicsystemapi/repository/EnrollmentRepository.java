@@ -7,6 +7,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface EnrollmentRepository extends JpaRepository<Enrollment, Long> {
     // JPQL para buscar os alunos aprovados numa determinada disciplina/curso
@@ -16,4 +17,6 @@ public interface EnrollmentRepository extends JpaRepository<Enrollment, Long> {
     // JPQL para buscar os alunos reprovados numa determinada disciplina/curso
     @Query("SELECT e.student FROM Enrollment e WHERE e.course.id = :courseId AND e.grade < 7.00")
     List<Student> findDisapprovedStudentsByCourse(@Param("courseId") Long courseId);
+
+    Optional<Enrollment> findByStudentIdAndCourseId(Long studentId, Long courseId);
 }

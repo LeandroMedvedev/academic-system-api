@@ -31,3 +31,17 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Arquivos de Configuração Específicos de Ambiente  ###
+application-prod.yml
+application-prod.properties
+application-dev.yml
+application-dev.properties
+
+### Logs ###
+*.log
+logs/
+
+### Arquivos de Sistema Operacional ###
+.DS_Store
+Thumbs.db

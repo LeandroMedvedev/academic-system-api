@@ -3,7 +3,7 @@ package br.com.infnet.academicsystemapi.dto;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-public record CourseRequest(
+public record CourseRequestDTO(
         @NotBlank(message = "O nome da disciplina não pode estar em branco.")
         String name,
 

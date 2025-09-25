@@ -1,0 +1,4 @@
+spring:
+  profiles:
+    # Define 'dev' como perfil ativo, se nenhum outro for especificado
+    active: dev

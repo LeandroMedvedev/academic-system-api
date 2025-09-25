@@ -2,7 +2,7 @@ package br.com.infnet.academicsystemapi.dto;
 
 import java.math.BigDecimal;
 
-public record EnrollmentResponse(
+public record EnrollmentResponseDTO(
         Long enrollmentId,
         Long studentId,
         String studentName,

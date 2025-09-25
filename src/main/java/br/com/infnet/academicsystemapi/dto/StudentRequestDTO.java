@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
-public record StudentRequest(
+public record StudentRequestDTO(
         @NotBlank(message = "O nome não pode estar em branco.")
         String name,
 

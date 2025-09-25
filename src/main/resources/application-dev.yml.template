@@ -1,0 +1,16 @@
+# ESTE É UM ARQUIVO DE EXEMPLO.
+# COPIE-O PARA 'application-dev.yml' E PREENCHA COM SUAS CREDENCIAIS LOCAIS.
+# O ARQUIVO 'application-dev.yml' NÃO DEVE SER VERSIONADO NO GIT.
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/academic_db
+    username: academic_user
+    password: <INSIRA_SUA_SENHA_LOCAL_AQUI>
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
