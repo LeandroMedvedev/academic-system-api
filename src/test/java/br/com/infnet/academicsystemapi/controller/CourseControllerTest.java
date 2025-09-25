@@ -6,7 +6,6 @@ import br.com.infnet.academicsystemapi.model.Student;
 import br.com.infnet.academicsystemapi.repository.CourseRepository;
 import br.com.infnet.academicsystemapi.repository.EnrollmentRepository;
 import br.com.infnet.academicsystemapi.repository.StudentRepository;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -30,9 +29,6 @@ class CourseControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
-
-    @Autowired
-    private ObjectMapper objectMapper;
 
     @Autowired
     private CourseRepository courseRepository;
