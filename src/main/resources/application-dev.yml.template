@@ -1,3 +1,7 @@
+api:
+  security:
+    token:
+      secret: "uma_chave_secreta_muito_longa_e_dificil_de_adivinhar_para_proteger_tokens_jwt"
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/academic_db
