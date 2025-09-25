@@ -43,13 +43,13 @@ public class TokenService {
                     .verify(token)
                     .getSubject();
         } catch (JWTVerificationException exception){
-            // Retorna uma "string" vazia se o "token" for inválido
+            // Retorna "string" vazia se "token" for inválido
             return "";
         }
     }
 
     private Instant getExpirationDate() {
-        // Define o tempo de expiração do "token" para 2 horas a partir de agora
+        // Define tempo de expiração do "token" para 2 horas a partir de agora
         return LocalDateTime.now().plusHours(2).toInstant(ZoneOffset.of("-03:00"));
     }
 }
