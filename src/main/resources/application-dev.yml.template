@@ -1,16 +1,26 @@
-api:
-  security:
-    token:
-      secret: <CRIE_E_INSIRA_SUA_CHAVE_SECRETA_DE_GERACAO_DO_TOKEN_AQUI>
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/academic_db
-    username: academic_user
-    password: <INSIRA_SUA_SENHA_LOCAL_AQUI>
+    url: jdbc:h2:mem:academicsystem
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+
   jpa:
+    # Para o H2, o Spring Boot geralmente detecta o dialeto correto, mas é bom ser explícito.
+    database-platform: org.hibernate.dialect.H2Dialect
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
     show-sql: true
     properties:
       hibernate:
         format_sql: true
+
+api:
+  security:
+    token:
+      secret: <CRIE_E_INSIRA_SUA_CHAVE_SECRETA_DE_GERACAO_DO_TOKEN_AQUI>
