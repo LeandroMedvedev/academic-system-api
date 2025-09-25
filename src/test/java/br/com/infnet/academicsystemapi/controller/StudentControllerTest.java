@@ -2,6 +2,8 @@ package br.com.infnet.academicsystemapi.controller;
 
 import br.com.infnet.academicsystemapi.dto.StudentRequestDTO;
 import br.com.infnet.academicsystemapi.model.Student;
+import br.com.infnet.academicsystemapi.repository.CourseRepository;
+import br.com.infnet.academicsystemapi.repository.EnrollmentRepository;
 import br.com.infnet.academicsystemapi.repository.StudentRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -29,14 +31,22 @@ class StudentControllerTest {
     private MockMvc mockMvc;
 
     @Autowired
+    private ObjectMapper objectMapper;
+
+    @Autowired
     private StudentRepository studentRepository;
 
     @Autowired
-    private ObjectMapper objectMapper;
+    private CourseRepository courseRepository;
+
+    @Autowired
+    private EnrollmentRepository enrollmentRepository;
 
     @BeforeEach
     void setUp() {
+        enrollmentRepository.deleteAll();
         studentRepository.deleteAll();
+        courseRepository.deleteAll();
     }
 
     @Test
