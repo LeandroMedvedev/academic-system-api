@@ -1,7 +1,3 @@
-# ESTE É UM ARQUIVO DE EXEMPLO.
-# COPIE-O PARA 'application-dev.yml' E PREENCHA COM SUAS CREDENCIAIS LOCAIS.
-# O ARQUIVO 'application-dev.yml' NÃO DEVE SER VERSIONADO NO GIT.
-
 spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/academic_db
