@@ -10,6 +10,10 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
@@ -27,9 +31,9 @@ public class SecurityConfigurations {
                 // 2. Configura a gestão de sessão como STATELESS.
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
-                // 3. Define as regras de autorização para as requisições HTTP.
+                // 3. Define as regras de autorização para requisições HTTP.
                 .authorizeHttpRequests(authorize -> authorize
-                        // Permite acesso público (sem autenticação) ao endpoint de login.
+                        // Permite acesso público (sem autenticação) ao endpoint de "login".
                         .requestMatchers(HttpMethod.POST, "/login").permitAll()
 
                         // Exige autenticação para todas as outras requisições.
@@ -40,5 +44,17 @@ public class SecurityConfigurations {
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
 
                 .build();
+    }
+
+    // Bean necessário para ser injetado no controller de autenticação.
+    @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
+        return configuration.getAuthenticationManager();
+    }
+
+    // Define o algoritmo de hashing de senhas a ser usado (BCrypt).
+    @Bean
+    public PasswordEncoder passwordEncoder() {
+        return new BCryptPasswordEncoder();
     }
 }
