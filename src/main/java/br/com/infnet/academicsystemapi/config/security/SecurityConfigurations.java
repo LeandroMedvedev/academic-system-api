@@ -39,10 +39,14 @@ public class SecurityConfigurations {
                         // Exige autenticação para todas as outras requisições.
                         .anyRequest().authenticated()
                 )
+                // 4. Desabilita explicitamente a proteção de "login" baseada em formulário HTML
+                .formLogin(AbstractHttpConfigurer::disable)
 
-                // 4. Adiciona filtro personalizado ANTES do filtro padrão do Spring.
+                // 5. Desabilita a autenticação HTTP Basic
+                .httpBasic(AbstractHttpConfigurer::disable)
+
+                // 6. Adiciona filtro personalizado ANTES do filtro padrão do Spring.
                 .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class)
-
                 .build();
     }
 
