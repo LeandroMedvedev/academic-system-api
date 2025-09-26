@@ -72,4 +72,31 @@ class CourseControllerTest {
                 .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].name", is("Holly Shumpert")));
     }
+
+    @Test
+    @DisplayName("Deve retornar a lista de alunos reprovados com status 200 OK")
+    @WithMockUser
+    void getDisapprovedStudents_ShouldReturnListOfStudentsAnd200() throws Exception {
+        Course ipsDriverTraining = new Course();
+        ipsDriverTraining.setName("IPS Driver Training");
+        ipsDriverTraining.setCode("IPS101");
+        courseRepository.save(ipsDriverTraining);
+
+        Student dannyHeffernan = new Student();
+        dannyHeffernan.setName("Danny Heffernan");
+        dannyHeffernan.setCpf("666.666.666-66");
+        dannyHeffernan.setEmail("danny@ips.com");
+        studentRepository.save(dannyHeffernan);
+
+        Enrollment enrollment = new Enrollment();
+        enrollment.setStudent(dannyHeffernan);
+        enrollment.setCourse(ipsDriverTraining);
+        enrollment.setGrade(new BigDecimal("4.50"));
+        enrollmentRepository.save(enrollment);
+
+        mockMvc.perform(get("/api/v1/courses/" + ipsDriverTraining.getId() + "/disapproved-students"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$[0].name", is("Danny Heffernan")));
+    }
 }

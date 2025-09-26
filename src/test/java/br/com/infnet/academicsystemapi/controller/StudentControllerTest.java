@@ -92,4 +92,12 @@ class StudentControllerTest {
                 .andExpect(jsonPath("$.id", is(savedStudent.getId().intValue())))
                 .andExpect(jsonPath("$.name", is("Spence Olchin")));
     }
+
+    @Test
+    @DisplayName("Deve retornar status 403 Forbidden para requisição sem token")
+    // Sem @WithMockUser para dar erro 403
+    void getStudentById_WithoutToken_ShouldReturn403() throws Exception {
+        mockMvc.perform(get("/api/v1/students/1"))
+                .andExpect(status().isForbidden());
+    }
 }
